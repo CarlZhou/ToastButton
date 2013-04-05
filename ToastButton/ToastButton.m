@@ -1,24 +1,24 @@
 /*
- 
+
  ToastButton.m
- 
+
  MIT LICENSE
- 
+
  Copyright (c) 2013 Zian ZHOU
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- 
+
  */
 
 #import "ToastButton.h"
 #import "QuartzCore/QuartzCore.h"
 
 @interface ToastButton()
-    
+
 - (void)setDisplayToast:(BOOL)animated;
 
 @end
@@ -51,7 +51,7 @@
         toastTextFont = nil;
         customView = nil;
         isAnimated = YES;
-        positionMode = ToastButtonCenterPositionMode;
+        positionMode = ToastCenterPositionMode;
         [self setMode:ToastButtonToastMode];
         self.removeFromSuperViewAfterHide = YES;
         [self setInitFrame];
@@ -64,7 +64,8 @@
 {
     CGFloat originX, originY;
 	UIInterfaceOrientation orientation = (UIInterfaceOrientation)[[UIApplication sharedApplication] statusBarOrientation];
-	switch (orientation) {
+	switch (orientation)
+    {
 		case UIInterfaceOrientationPortrait:
         case UIInterfaceOrientationPortraitUpsideDown:
 		{
@@ -97,9 +98,9 @@
 		[NSException raise:@"ViewIsNillException"
 					format:@"The view is nil."];
 	}
-    
+
     toastSetView = view;
-    
+
     return [self initWithFrame:view.bounds];
 }
 
@@ -215,7 +216,7 @@
         toastImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
         [self addSubview:toastImageView];
     }
-    
+
     [toastImageView setImage:toastImage];
     [self resizeSubviewsForToastButton];
 }
@@ -239,14 +240,14 @@
         [toastImageView removeFromSuperview];
     if (toastTextLabel)
         [toastTextLabel removeFromSuperview];
-    
+
     CGFloat originX, originY, newWidth, newHeight;
-    
+
     newHeight = customView.frame.size.height;
     newWidth = customView.frame.size.width;
     originX = (initSuperViewWidth - newWidth)/2;
     originY = (initSuperViewHeight - newHeight)/2;
-    
+
     [self setFrame:CGRectMake(originX, originY, newWidth, newHeight)];
 }
 
@@ -255,31 +256,31 @@
     if ([toastTextLabel.text isEqualToString:@""])
         return;
     CGSize textSize = [toastTextLabel.text sizeWithFont:toastTextLabel.font constrainedToSize:CGSizeMake(toastSetView.frame.size.width-100, toastSetView.frame.size.width-100)  lineBreakMode:NSLineBreakByWordWrapping];
-    
-        if (textSize.width > self.frame.size.width)
+
+    if (textSize.width > self.frame.size.width)
+    {
+        CGFloat originX, originY;
+        if (textSize.height > self.frame.size.height)
         {
-            CGFloat originX, originY;
-            if (textSize.height > self.frame.size.height)
-            {
-                originX = (initSuperViewWidth - textSize.width)/2 - 5;
-                originY = (initSuperViewHeight - textSize.height)/2 - 5;
-            }
-            else
-            {
-                originX = (initSuperViewWidth - textSize.width)/2 - 5;
-                originY = self.frame.origin.y;
-            }
-            
-            [self setFrame:CGRectMake(originX, originY, textSize.width+10, textSize.height+10)];
-            [toastTextLabel setFrame:CGRectMake(5, 5, textSize.width, textSize.height)];
+            originX = (initSuperViewWidth - textSize.width)/2 - 5;
+            originY = (initSuperViewHeight - textSize.height)/2 - 5;
         }
         else
         {
-            CGFloat textLabelOriginX = (self.frame.size.width - textSize.width)/2;
-            CGFloat textLabelOriginY = (self.frame.size.height - textSize.height)/2;
-            
-            [toastTextLabel setFrame:CGRectMake(textLabelOriginX, textLabelOriginY, textSize.width, textSize.height)];
+            originX = (initSuperViewWidth - textSize.width)/2 - 5;
+            originY = self.frame.origin.y;
         }
+
+        [self setFrame:CGRectMake(originX, originY, textSize.width+10, textSize.height+10)];
+        [toastTextLabel setFrame:CGRectMake(5, 5, textSize.width, textSize.height)];
+    }
+    else
+    {
+        CGFloat textLabelOriginX = (self.frame.size.width - textSize.width)/2;
+        CGFloat textLabelOriginY = (self.frame.size.height - textSize.height)/2;
+
+        [toastTextLabel setFrame:CGRectMake(textLabelOriginX, textLabelOriginY, textSize.width, textSize.height)];
+    }
 }
 
 - (void)resizeToastImageView
@@ -288,7 +289,7 @@
         return;
 
     CGFloat newHeight, newWidth, originX, originY, newHeightStartLine;
-    
+
     if (self.frame.size.height < 41 && self.frame.size.width < 41)
     {
         newHeight = 30 + 40 + 5;
@@ -305,9 +306,9 @@
         originY = (initSuperViewHeight - newHeight)/2;
         [self setFrame:CGRectMake(originX, originY, newWidth, newHeight)];
     }
-    
+
     newHeightStartLine = (self.frame.size.height - (toastImageView.frame.size.height + toastTextLabel.frame.size.height + 5))/2;
-    
+
     if (newHeightStartLine > 15)
     {
         newHeight = newHeight-(newHeightStartLine-15)*2;
@@ -315,11 +316,11 @@
         [self setFrame:CGRectMake(originX, originY, newWidth, newHeight)];
         newHeightStartLine = 15;
     }
-    
+
     [toastImageView setFrame:CGRectMake((self.frame.size.width - toastImageView.frame.size.width)/2, newHeightStartLine+2.5, toastImageView.frame.size.width, toastImageView.frame.size.height)];
-    
+
     [toastTextLabel setFrame:CGRectMake(toastTextLabel.frame.origin.x, newHeightStartLine + 7.5 + toastImageView.frame.size.height, toastTextLabel.frame.size.width, toastTextLabel.frame.size.height)];
-    
+
 }
 
 - (void)resizeButtonAndBackgroundView
@@ -332,18 +333,18 @@
 {
     switch (positionMode)
     {
-        case ToastButtonTopPositionMode:
+        case ToastTopPositionMode:
         {
             [self setFrame:CGRectMake(self.frame.origin.x, 15, self.frame.size.width, self.frame.size.height)];
             break;
         }
-        case ToastButtonCenterPositionMode:
+        case ToastCenterPositionMode:
         {
             CGFloat originY = (initSuperViewHeight - self.frame.size.height)/2;
             [self setFrame:CGRectMake(self.frame.origin.x, originY, self.frame.size.width, self.frame.size.height)];
             break;
         }
-        case ToastButtonBottomPositionMode:
+        case ToastBottomPositionMode:
         {
             [self setFrame:CGRectMake(self.frame.origin.x, initSuperViewHeight - self.frame.size.height - 15, self.frame.size.width, self.frame.size.height)];
             break;
@@ -362,7 +363,7 @@
 - (void)setMode:(ToastButtonMode)mode
 {
     toastMode = mode;
-    
+
     switch (toastMode)
     {
         case ToastButtonBtnMode:
@@ -372,16 +373,14 @@
             toastBtn.enabled = NO;
             break;
         case ToastButtonCustomViewMode:
-            // TODO: RESIZE!
-            [toastBtn setTitle:@"" forState:UIControlStateNormal];
-            [toastImageView removeFromSuperview];
+            toastBtn.enabled = YES;
             break;
         default:
             break;
     }
 }
 
-- (void)setPositionMode:(ToastButtonPositionMode)mode
+- (void)setPositionMode:(ToastPositionMode)mode
 {
     positionMode = mode;
     [self resizeSubviewsForToastButton];

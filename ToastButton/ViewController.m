@@ -35,12 +35,12 @@
     toastBtn = [ToastButton showToastTo:self.view animated:YES];
 //    [toastBtn setToastImage:[[UIImage imageNamed:@"radiation.png"] stretchableImageWithLeftCapWidth:12 topCapHeight:11]];
     [toastBtn setToastText:@"hiddsafasdfasdfasdfasdfasdfe"];
-    [toastBtn setPositionMode:ToastButtonBottomPositionMode];
-    
+    [toastBtn setPositionMode:ToastBottomPositionMode];
+
     UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
     [customView setBackgroundColor:[UIColor redColor]];
     [toastBtn setCustomView:customView];
-    
+
     [toastBtn setTarget:toastBtn Action:@selector(Hide)];
 }
 
