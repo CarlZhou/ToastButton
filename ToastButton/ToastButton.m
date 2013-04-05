@@ -14,6 +14,7 @@
 
  */
 
+#import <CoreGraphics/CoreGraphics.h>
 #import "ToastButton.h"
 #import "QuartzCore/QuartzCore.h"
 
@@ -69,21 +70,21 @@
 		case UIInterfaceOrientationPortrait:
         case UIInterfaceOrientationPortraitUpsideDown:
 		{
-            originX = (toastSetView.frame.size.width - 40)/2;
-            originY = (toastSetView.frame.size.height - 40)/2;
+            originX = (toastSetView.bounds.size.width - 40)/2;
+            originY = (toastSetView.bounds.size.height - 40)/2;
             [self setFrame:CGRectMake(originX, originY, 40, 40)];
-            initSuperViewWidth = toastSetView.frame.size.width;
-            initSuperViewHeight = toastSetView.frame.size.height;
+            initSuperViewWidth = toastSetView.bounds.size.width;
+            initSuperViewHeight = toastSetView.bounds.size.height;
 			break;
 		}
 		case UIInterfaceOrientationLandscapeLeft:
 		case UIInterfaceOrientationLandscapeRight:
 		{
-            originX = (toastSetView.frame.size.height - 40)/2;
-            originY = (toastSetView.frame.size.width - 40)/2;
+            originY = (toastSetView.bounds.size.height - 40)/2;
+            originX = (toastSetView.bounds.size.width - 40)/2;
             [self setFrame:CGRectMake(originX, originY, 40, 40)];
-            initSuperViewWidth = toastSetView.frame.size.height;
-            initSuperViewHeight = toastSetView.frame.size.width;
+            initSuperViewWidth = toastSetView.bounds.size.width;
+            initSuperViewHeight = toastSetView.bounds.size.height;
 			break;
 		}
 		default:
@@ -108,7 +109,6 @@
 {
 	ToastButton *toastBtn = [[ToastButton alloc] initWithView:view];
 	[view addSubview:toastBtn];
-	[toastBtn Show];
 	return toastBtn;
 }
 
@@ -116,9 +116,13 @@
 {
     ToastButton *toastBtn = [[ToastButton alloc] initWithView:view];
 	[view addSubview:toastBtn];
-	[toastBtn Show];
-    [toastBtn HideAfterDelay:0.3+secs];
+    [toastBtn setHideAfterDelayTime:secs+0.5];
 	return toastBtn;
+}
+
+- (void)setHideAfterDelayTime:(NSTimeInterval)delay
+{
+    hideAfterDelayTime = delay;
 }
 
 - (void)setDisplayToast:(BOOL)animated
@@ -128,19 +132,22 @@
 
 - (void)ShowWithAnimation:(BOOL)animated
 {
+    [self setPosition];
     if (animated)
     {
         backgroundView.alpha = 0.0f;
         toastTextLabel.alpha = 0.0f;
         toastImageView.alpha = 0.0f;
         customView.alpha = 0.0f;
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             backgroundView.alpha = 0.7f;
             toastTextLabel.alpha = 1.0f;
             toastImageView.alpha = 1.0f;
             customView.alpha = 1.0f;
         }completion:^(BOOL finished){
             // TODO:After animation actions
+            if (hideAfterDelayTime != 0)
+                [self HideAfterDelay:hideAfterDelayTime];
         }];
     }
     else
@@ -170,7 +177,7 @@
         toastTextLabel.alpha = 1.0f;
         toastImageView.alpha = 1.0f;
         customView.alpha = 1.0f;
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             backgroundView.alpha = 0.0f;
             toastTextLabel.alpha = 0.0f;
             toastImageView.alpha = 0.0f;
@@ -218,6 +225,7 @@
     }
 
     [toastImageView setImage:toastImage];
+    toastImageView.alpha = 0.0f;
     [self resizeSubviewsForToastButton];
 }
 
@@ -231,7 +239,6 @@
         [self resizeToastImageView];
     }
     [self resizeButtonAndBackgroundView];
-    [self setPosition];
 }
 
 - (void)resizeCustomView
@@ -240,6 +247,7 @@
         [toastImageView removeFromSuperview];
     if (toastTextLabel)
         [toastTextLabel removeFromSuperview];
+    [backgroundView removeFromSuperview];
 
     CGFloat originX, originY, newWidth, newHeight;
 
@@ -319,7 +327,7 @@
 
     [toastImageView setFrame:CGRectMake((self.frame.size.width - toastImageView.frame.size.width)/2, newHeightStartLine+2.5, toastImageView.frame.size.width, toastImageView.frame.size.height)];
 
-    [toastTextLabel setFrame:CGRectMake(toastTextLabel.frame.origin.x, newHeightStartLine + 7.5 + toastImageView.frame.size.height, toastTextLabel.frame.size.width, toastTextLabel.frame.size.height)];
+    [toastTextLabel setFrame:CGRectMake(toastTextLabel.frame.origin.x+5, newHeightStartLine + 7.5 + toastImageView.frame.size.height, toastTextLabel.frame.size.width, toastTextLabel.frame.size.height)];
 
 }
 
@@ -340,8 +348,9 @@
         }
         case ToastCenterPositionMode:
         {
+            CGFloat originX = (initSuperViewWidth - self.frame.size.width)/2;
             CGFloat originY = (initSuperViewHeight - self.frame.size.height)/2;
-            [self setFrame:CGRectMake(self.frame.origin.x, originY, self.frame.size.width, self.frame.size.height)];
+            [self setFrame:CGRectMake(originX, originY, self.frame.size.width, self.frame.size.height)];
             break;
         }
         case ToastBottomPositionMode:
@@ -390,6 +399,7 @@
 {
     customView = view;
     [self addSubview:customView];
+    customView.alpha = 0.0f;
     [self bringSubviewToFront:toastBtn];
     [self resizeSubviewsForToastButton];
 }

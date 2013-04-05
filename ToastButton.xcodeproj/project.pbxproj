@@ -37,6 +37,8 @@
 		C3125F1D170F5B2400F913A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3125F15170F5B2400F913A9 /* main.m */; };
 		C3125F1F170F5B3D00F913A9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3125F1E170F5B3D00F913A9 /* InfoPlist.strings */; };
 		C3125F20170F5B3D00F913A9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3125F1E170F5B3D00F913A9 /* InfoPlist.strings */; };
+		C3125F24170F639100F913A9 /* imageView.png in Resources */ = {isa = PBXBuildFile; fileRef = C3125F23170F639100F913A9 /* imageView.png */; };
+		C3125F26170F652D00F913A9 /* customView8bit.png in Resources */ = {isa = PBXBuildFile; fileRef = C3125F25170F652D00F913A9 /* customView8bit.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		C3125F14170F5B2400F913A9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C3125F15170F5B2400F913A9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C3125F1E170F5B3D00F913A9 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		C3125F23170F639100F913A9 /* imageView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageView.png; sourceTree = "<group>"; };
+		C3125F25170F652D00F913A9 /* customView8bit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = customView8bit.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,8 @@
 		C3125EFD170F5A7600F913A9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C3125F25170F652D00F913A9 /* customView8bit.png */,
+				C3125F23170F639100F913A9 /* imageView.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -277,6 +283,8 @@
 				C3125F18170F5B2400F913A9 /* Default.png in Resources */,
 				C3125F1A170F5B2400F913A9 /* Default@2x.png in Resources */,
 				C3125F1F170F5B3D00F913A9 /* InfoPlist.strings in Resources */,
+				C3125F24170F639100F913A9 /* imageView.png in Resources */,
+				C3125F26170F652D00F913A9 /* customView8bit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
