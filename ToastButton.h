@@ -22,9 +22,9 @@ typedef enum {
     /**  */
 	ToastButtonToastMode,
     /**  */
-	ToastButtonCustomViewMode,
-	/**  */
-	ToastButtonModeNum
+    ToastButtonCustomViewMode,
+    /**  */
+    ToastButtonModeNum
 } ToastButtonMode;
 
 @interface ToastButton : UIView
