@@ -132,10 +132,12 @@
         backgroundView.alpha = 0.0f;
         toastTextLabel.alpha = 0.0f;
         toastImageView.alpha = 0.0f;
+        customView.alpha = 0.0f;
         [UIView animateWithDuration:0.3 animations:^{
             backgroundView.alpha = 0.7f;
             toastTextLabel.alpha = 1.0f;
             toastImageView.alpha = 1.0f;
+            customView.alpha = 1.0f;
         }completion:^(BOOL finished){
             // TODO:After animation actions
         }];
@@ -144,13 +146,13 @@
     {
         toastTextLabel.alpha = 1.0f;
         toastImageView.alpha = 1.0f;
+        customView.alpha = 1.0f;
         backgroundView.alpha = 0.7f;
     }
 }
 
 - (void)Show
 {
-    [self bringSubviewToFront:toastImageView];
     [self ShowWithAnimation:isAnimated];
 }
 
@@ -166,10 +168,12 @@
         backgroundView.alpha = 0.7f;
         toastTextLabel.alpha = 1.0f;
         toastImageView.alpha = 1.0f;
+        customView.alpha = 1.0f;
         [UIView animateWithDuration:0.3 animations:^{
             backgroundView.alpha = 0.0f;
             toastTextLabel.alpha = 0.0f;
             toastImageView.alpha = 0.0f;
+            customView.alpha = 0.0f;
         }completion:^(BOOL finished){
             // TODO:After animation actions
             if (self.removeFromSuperViewAfterHide)
@@ -181,6 +185,7 @@
         backgroundView.alpha = 0.0f;
         toastImageView.alpha = 0.0f;
         toastTextLabel.alpha = 0.0f;
+        customView.alpha = 0.0f;
         if (self.removeFromSuperViewAfterHide)
             [self removeFromSuperview];
     }
@@ -217,10 +222,32 @@
 
 - (void)resizeSubviewsForToastButton
 {
-    [self resizeTextLabel];
-    [self resizeToastImageView];
+    if (customView)
+        [self resizeCustomView];
+    else
+    {
+        [self resizeTextLabel];
+        [self resizeToastImageView];
+    }
     [self resizeButtonAndBackgroundView];
     [self setPosition];
+}
+
+- (void)resizeCustomView
+{
+    if (toastImageView)
+        [toastImageView removeFromSuperview];
+    if (toastTextLabel)
+        [toastTextLabel removeFromSuperview];
+    
+    CGFloat originX, originY, newWidth, newHeight;
+    
+    newHeight = customView.frame.size.height;
+    newWidth = customView.frame.size.width;
+    originX = (initSuperViewWidth - newWidth)/2;
+    originY = (initSuperViewHeight - newHeight)/2;
+    
+    [self setFrame:CGRectMake(originX, originY, newWidth, newHeight)];
 }
 
 - (void)resizeTextLabel
@@ -363,6 +390,9 @@
 - (void)setCustomView:(UIView *)view
 {
     customView = view;
+    [self addSubview:customView];
+    [self bringSubviewToFront:toastBtn];
+    [self resizeSubviewsForToastButton];
 }
 
 /*
