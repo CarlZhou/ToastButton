@@ -20,7 +20,7 @@ typedef enum {
     /** */
     ToastButtonBtnMode,
     /**  */
-	ToastButtonToastMode,
+    ToastButtonToastMode,
     /**  */
     ToastButtonCustomViewMode,
     /**  */
