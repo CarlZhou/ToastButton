@@ -33,8 +33,9 @@
 - (IBAction)showToastButton:(id)sender
 {
     toastBtn = [ToastButton showToastTo:self.view animated:YES];
-    [toastBtn setToastImage:[[UIImage imageNamed:@"radiation_white.png"] stretchableImageWithLeftCapWidth:12 topCapHeight:11]];
+//    [toastBtn setToastImage:[[UIImage imageNamed:@"radiation.png"] stretchableImageWithLeftCapWidth:12 topCapHeight:11]];
     [toastBtn setToastText:@"hiddsafasdfasdfasdfasdfasdfe"];
+    [toastBtn setPositionMode:ToastButtonBottomPositionMode];
     [toastBtn setTarget:self Action:@selector(hideToast)];
 }
 

@@ -27,6 +27,17 @@ typedef enum {
     ToastButtonModeNum
 } ToastButtonMode;
 
+typedef enum {
+    /** */
+    ToastButtonTopPositionMode,
+    /**  */
+    ToastButtonCenterPositionMode,
+    /**  */
+    ToastButtonBottomPositionMode,
+    /**  */
+    ToastButtonPositionModeNum
+} ToastButtonPositionMode;
+
 @interface ToastButton : UIView
 {
     UIView *toastSetView;
@@ -38,6 +49,7 @@ typedef enum {
     UIFont *toastTextFont;
     BOOL isAnimated;
     ToastButtonMode toastMode;
+    ToastButtonPositionMode positionMode;
     CGFloat initSuperViewWidth;
     CGFloat initSuperViewHeight;
     UIView *backgroundView;
@@ -54,6 +66,7 @@ typedef enum {
 - (void)setToastText:(NSString *)text;
 - (void)setToastImage:(UIImage *)image;
 - (void)setCustomView:(UIView *)view;
+- (void)setPositionMode:(ToastButtonPositionMode)mode;
 
 @property BOOL removeFromSuperViewAfterHide;
 

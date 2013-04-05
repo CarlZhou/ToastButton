@@ -51,6 +51,7 @@
         toastTextFont = nil;
         customView = nil;
         isAnimated = YES;
+        positionMode = ToastButtonCenterPositionMode;
         [self setMode:ToastButtonToastMode];
         self.removeFromSuperViewAfterHide = YES;
         [self setInitFrame];
@@ -219,6 +220,7 @@
     [self resizeTextLabel];
     [self resizeToastImageView];
     [self resizeButtonAndBackgroundView];
+    [self setPosition];
 }
 
 - (void)resizeTextLabel
@@ -299,6 +301,31 @@
     [backgroundView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
 }
 
+- (void)setPosition
+{
+    switch (positionMode)
+    {
+        case ToastButtonTopPositionMode:
+        {
+            [self setFrame:CGRectMake(self.frame.origin.x, 15, self.frame.size.width, self.frame.size.height)];
+            break;
+        }
+        case ToastButtonCenterPositionMode:
+        {
+            CGFloat originY = (initSuperViewHeight - self.frame.size.height)/2;
+            [self setFrame:CGRectMake(self.frame.origin.x, originY, self.frame.size.width, self.frame.size.height)];
+            break;
+        }
+        case ToastButtonBottomPositionMode:
+        {
+            [self setFrame:CGRectMake(self.frame.origin.x, initSuperViewHeight - self.frame.size.height - 15, self.frame.size.width, self.frame.size.height)];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
 - (void)setTarget:(id)target Action:(SEL)Selector
 {
     [toastBtn addTarget:target action:Selector forControlEvents:UIControlEventTouchUpInside];
@@ -325,6 +352,12 @@
         default:
             break;
     }
+}
+
+- (void)setPositionMode:(ToastButtonPositionMode)mode
+{
+    positionMode = mode;
+    [self resizeSubviewsForToastButton];
 }
 
 - (void)setCustomView:(UIView *)view
