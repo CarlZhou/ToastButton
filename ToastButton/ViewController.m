@@ -95,11 +95,12 @@
     [toastBtn setTarget:toastBtn Action:@selector(Hide)];
     [toastBtn Show];
     UIViewController *testViewController = [[UIViewController alloc] init];
-    [testViewController.view setBackgroundColor:[UIColor whiteColor]];
+    testViewController.view.backgroundColor = [UIColor lightGrayColor];
     testNavi = [[UINavigationController alloc] initWithRootViewController:testViewController];
     [self presentModalViewController:testNavi animated:YES];
     
-    testViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:testViewController action:@selector(dismissModalViewControllerAnimated:)];
+    testViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:testViewController action:@selector(dismissModalViewControllerAnimated:)];
     testNavi.navigationBar.tintColor = [UIColor blackColor];
+    testViewController.navigationItem.title = @"acrossController";
 }
 @end
