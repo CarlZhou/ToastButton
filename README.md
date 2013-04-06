@@ -21,3 +21,11 @@ ToastButton works on iOS 5.x+ version and is compatible with only ARC projects. 
 * QuartzCore.framework
 
 You will need LLVM 3.0 or later in order to build ToastButton. 
+
+### Usage
+
+Directly add the `ToastButton.h` and `ToastButton.m` source files to your project.
+
+1. Download the [latest code version](https://github.com/carlWattpad/ToastButton/archive/master.zip) or add the repository as a git submodule to your git-tracked project. 
+2. Open your project in Xcode, than drag and drop `ToastButton.h` and `ToastButton.m` onto your project (use the "Product Navigator view"). Make sure to select Copy items when asked if you extracted the code archive outside of your project. 
+3. Include ToastButton wherever you need it with `#import "ToastButton.h"`.
