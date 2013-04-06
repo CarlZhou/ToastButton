@@ -44,6 +44,19 @@
                                             <action selector="showToastButton:" destination="2" eventType="touchUpInside" id="tBT-ny-XnI"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DF0-aQ-OVa">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="acrossControllers">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="attachToUIWindowPressed:" destination="2" eventType="touchUpInside" id="lgb-0A-BTF"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOI-yv-kzw">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="showWithImage">
@@ -111,23 +124,26 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="DF0-aQ-OVa" secondAttribute="bottom" constant="135" id="0EZ-Vz-SIy"/>
                                     <constraint firstAttribute="trailing" secondItem="P2E-xu-En6" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="6Rl-ZU-UhR"/>
                                     <constraint firstItem="fOI-yv-kzw" firstAttribute="leading" secondItem="NsH-nO-qkm" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="7Eo-99-qlk"/>
                                     <constraint firstAttribute="trailing" secondItem="CfE-rS-nTp" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="9Pr-lB-hPb"/>
+                                    <constraint firstItem="DF0-aQ-OVa" firstAttribute="leading" secondItem="NsH-nO-qkm" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="DEx-oD-YpG"/>
+                                    <constraint firstItem="DF0-aQ-OVa" firstAttribute="top" secondItem="jmH-ey-qay" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="F8P-7w-vNT"/>
                                     <constraint firstAttribute="trailing" secondItem="cDe-4n-lsH" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="In2-Sz-fgf"/>
+                                    <constraint firstAttribute="trailing" secondItem="DF0-aQ-OVa" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="ItZ-j9-mqf"/>
                                     <constraint firstAttribute="trailing" secondItem="fOI-yv-kzw" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Kf2-Rc-jYh"/>
                                     <constraint firstItem="CfE-rS-nTp" firstAttribute="top" secondItem="fOI-yv-kzw" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="R8q-TF-5ff"/>
                                     <constraint firstItem="O8S-XP-3qv" firstAttribute="leading" secondItem="NsH-nO-qkm" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="SvS-Jk-Ka4"/>
                                     <constraint firstItem="cDe-4n-lsH" firstAttribute="top" secondItem="CfE-rS-nTp" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ToH-At-TcV"/>
-                                    <constraint firstItem="P2E-xu-En6" firstAttribute="centerX" secondItem="NsH-nO-qkm" secondAttribute="centerX" type="default" id="Twp-5a-eRk"/>
                                     <constraint firstItem="CfE-rS-nTp" firstAttribute="leading" secondItem="NsH-nO-qkm" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="UUN-gD-ku1"/>
                                     <constraint firstItem="jmH-ey-qay" firstAttribute="top" secondItem="O8S-XP-3qv" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="aNC-pU-Hkp"/>
-                                    <constraint firstAttribute="bottom" secondItem="jmH-ey-qay" secondAttribute="bottom" constant="186" id="byq-Tb-KmT"/>
                                     <constraint firstItem="fOI-yv-kzw" firstAttribute="top" secondItem="P2E-xu-En6" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="cDj-6n-fJq"/>
                                     <constraint firstItem="P2E-xu-En6" firstAttribute="leading" secondItem="NsH-nO-qkm" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="cpW-d5-z50"/>
                                     <constraint firstAttribute="trailing" secondItem="jmH-ey-qay" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="d6V-sU-574"/>
                                     <constraint firstAttribute="trailing" secondItem="O8S-XP-3qv" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="g3h-2g-ewh"/>
                                     <constraint firstItem="cDe-4n-lsH" firstAttribute="leading" secondItem="NsH-nO-qkm" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ky7-mh-rAo"/>
+                                    <constraint firstItem="cDe-4n-lsH" firstAttribute="centerX" secondItem="NsH-nO-qkm" secondAttribute="centerX" type="default" id="q8L-uf-9ec"/>
                                     <constraint firstItem="P2E-xu-En6" firstAttribute="top" secondItem="NsH-nO-qkm" secondAttribute="top" constant="20" symbolic="YES" type="default" id="qq2-RR-B2Y"/>
                                     <constraint firstItem="O8S-XP-3qv" firstAttribute="top" secondItem="cDe-4n-lsH" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="r72-qD-mWe"/>
                                     <constraint firstItem="jmH-ey-qay" firstAttribute="leading" secondItem="NsH-nO-qkm" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="vDx-3c-icN"/>
@@ -156,10 +172,12 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="bottomPressed:"/>
                 <relationship kind="action" name="showToastButton:"/>
                 <relationship kind="action" name="showWithCustomViewPressed:"/>
                 <relationship kind="action" name="showWithImagePressed:"/>
                 <relationship kind="action" name="showWithTapAction:"/>
+                <relationship kind="action" name="topPressed:"/>
             </relationships>
         </class>
     </classes>

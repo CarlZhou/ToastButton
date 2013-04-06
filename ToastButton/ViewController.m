@@ -33,21 +33,10 @@
 
 - (IBAction)showToastButton:(id)sender
 {
-//    toastBtn = [ToastButton showToastTo:self.view animated:YES hideAfter:1];
-    toastBtn = [ToastButton showToastWithAnimated:YES];
+    toastBtn = [ToastButton showToastTo:self.view animated:YES hideAfter:1];
     [toastBtn setToastText:@"Hello World!"];
     [toastBtn Show];
     [toastBtn HideAfterDelay:3];
-    UIViewController *testViewController = [[UIViewController alloc] init];
-    [testViewController.view setBackgroundColor:[UIColor whiteColor]];
-    testNavi = [[UINavigationController alloc] initWithRootViewController:testViewController];
-    [self presentModalViewController:testNavi animated:YES];
-    
-    testViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:testViewController action:@selector(dismissModalViewControllerAnimated:)];
-    testNavi.navigationBar.tintColor = [UIColor blackColor];
-    
-//    [self performSelector:@selector(dismissTestNavi) withObject:nil afterDelay:5];
-//    [self.navigationController pushViewController:testViewController animated:YES];
 }
 
 - (void)dismissTestNavi
@@ -97,5 +86,20 @@
     [toastBtn Show];
 }
 
-
+- (IBAction)attachToUIWindowPressed:(id)sender
+{
+    toastBtn = [ToastButton showToastWithAnimated:YES];
+    [toastBtn setToastText:@"Tap to hide\nNeed to be released before another use"];
+    [toastBtn setToastImage:[[UIImage imageNamed:@"imageView.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:25]];
+    [toastBtn setPositionMode:ToastCenterPositionMode];
+    [toastBtn setTarget:toastBtn Action:@selector(Hide)];
+    [toastBtn Show];
+    UIViewController *testViewController = [[UIViewController alloc] init];
+    [testViewController.view setBackgroundColor:[UIColor whiteColor]];
+    testNavi = [[UINavigationController alloc] initWithRootViewController:testViewController];
+    [self presentModalViewController:testNavi animated:YES];
+    
+    testViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:testViewController action:@selector(dismissModalViewControllerAnimated:)];
+    testNavi.navigationBar.tintColor = [UIColor blackColor];
+}
 @end
