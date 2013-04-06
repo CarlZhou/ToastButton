@@ -54,8 +54,12 @@ typedef enum {
     CGFloat initSuperViewHeight;
     UIView *backgroundView;
     NSTimeInterval hideAfterDelayTime;
+    UIInterfaceOrientation lastInterfaceOrientation;
+    BOOL initWithWindow;
+    UIWindow *initWindow;
 }
 
++ (ToastButton *)showToastWithAnimated:(BOOL)animated;
 + (ToastButton *)showToastTo:(UIView *)view animated:(BOOL)animated;
 + (ToastButton *)showToastTo:(UIView *)view animated:(BOOL)animated hideAfter:(NSTimeInterval)secs;
 

@@ -16,6 +16,7 @@
 @implementation ViewController
 {
     ToastButton *toastBtn;
+    UINavigationController *testNavi;
 }
 
 - (void)viewDidLoad
@@ -32,9 +33,26 @@
 
 - (IBAction)showToastButton:(id)sender
 {
-    toastBtn = [ToastButton showToastTo:self.view animated:YES hideAfter:1];
-    [toastBtn setToastText:@"H"];
+//    toastBtn = [ToastButton showToastTo:self.view animated:YES hideAfter:1];
+    toastBtn = [ToastButton showToastWithAnimated:YES];
+    [toastBtn setToastText:@"Hello World!"];
     [toastBtn Show];
+    [toastBtn HideAfterDelay:3];
+    UIViewController *testViewController = [[UIViewController alloc] init];
+    [testViewController.view setBackgroundColor:[UIColor whiteColor]];
+    testNavi = [[UINavigationController alloc] initWithRootViewController:testViewController];
+    [self presentModalViewController:testNavi animated:YES];
+    
+    testViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:testViewController action:@selector(dismissModalViewControllerAnimated:)];
+    testNavi.navigationBar.tintColor = [UIColor blackColor];
+    
+//    [self performSelector:@selector(dismissTestNavi) withObject:nil afterDelay:5];
+//    [self.navigationController pushViewController:testViewController animated:YES];
+}
+
+- (void)dismissTestNavi
+{
+    [testNavi dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)showWithImagePressed:(id)sender

@@ -18,6 +18,8 @@
 #import "ToastButton.h"
 #import "QuartzCore/QuartzCore.h"
 
+#define DegreesToRadians(x) (CGFloat)((x) * M_PI / 180.0)
+
 @interface ToastButton()
 
 - (void)setDisplayToast:(BOOL)animated;
@@ -57,6 +59,7 @@
         self.removeFromSuperViewAfterHide = YES;
         [self setInitFrame];
         [self resizeSubviewsForToastButton];
+        lastInterfaceOrientation = (UIInterfaceOrientation)[[UIApplication sharedApplication] statusBarOrientation];
     }
     return self;
 }
@@ -103,6 +106,139 @@
     toastSetView = view;
 
     return [self initWithFrame:view.bounds];
+}
+
+- (id)initWithWindow:(UIWindow *)window
+{
+    initWithWindow = YES;
+    initWindow = window;
+    UIView *view = [window.subviews objectAtIndex:window.subviews.count-1];
+    toastSetView = view;
+    self = [self initWithFrame:view.bounds];
+    [window addSubview:self];
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(deviceOrientationDidChange:) name: UIDeviceOrientationDidChangeNotification object: nil];
+    return self;
+}
+
++ (ToastButton *)showToastWithAnimated:(BOOL)animated
+{
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    ToastButton *toastBtn = [[ToastButton alloc] initWithWindow:window];
+    return toastBtn;
+}
+
+UIDeviceOrientation currentOrientation;
+
+- (void)deviceOrientationDidChange:(NSNotification *)notification
+{
+    //Obtaining the current device orientation
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+
+    //Ignoring specific orientations
+    if (orientation == UIDeviceOrientationFaceUp || orientation == UIDeviceOrientationFaceDown || orientation == UIDeviceOrientationUnknown || currentOrientation == orientation) {
+        return;
+    }
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(relayoutLayers) object:nil];
+    //Responding only to changes in landscape or portrait
+    currentOrientation = orientation;
+    //
+    [self performSelector:@selector(orientationChangedMethod) withObject:nil afterDelay:0];
+}
+
+- (void)orientationChangedMethod
+{
+	UIInterfaceOrientation orientation = (UIInterfaceOrientation)[[UIApplication sharedApplication] statusBarOrientation];
+	switch (orientation)
+    {
+		case UIInterfaceOrientationPortrait:
+        {
+            switch (lastInterfaceOrientation)
+            {
+                case UIInterfaceOrientationPortrait:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(0));
+                    break;
+                case UIInterfaceOrientationPortraitUpsideDown:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(0));
+                    break;
+                case UIInterfaceOrientationLandscapeLeft:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(0));
+                    break;
+                case UIInterfaceOrientationLandscapeRight:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(0));
+                    break;
+                default:
+                    break;
+            }
+            break;
+        }
+        case UIInterfaceOrientationPortraitUpsideDown:
+		{
+            switch (lastInterfaceOrientation)
+            {
+                case UIInterfaceOrientationPortrait:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(180));
+                    break;
+                case UIInterfaceOrientationPortraitUpsideDown:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(180));
+                    break;
+                case UIInterfaceOrientationLandscapeLeft:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(180));
+                    break;
+                case UIInterfaceOrientationLandscapeRight:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(180));
+                    break;
+                default:
+                    break;
+            }
+            break;
+		}
+		case UIInterfaceOrientationLandscapeLeft:
+        {
+            switch (lastInterfaceOrientation)
+            {
+                case UIInterfaceOrientationPortrait:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(270));
+                    break;
+                case UIInterfaceOrientationPortraitUpsideDown:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(270));
+                    break;
+                case UIInterfaceOrientationLandscapeLeft:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(270));
+                    break;
+                case UIInterfaceOrientationLandscapeRight:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(270));
+                    break;
+                default:
+                    break;
+            }
+            break;
+        }
+		case UIInterfaceOrientationLandscapeRight:
+		{
+            switch (lastInterfaceOrientation)
+            {
+                case UIInterfaceOrientationPortrait:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(90));
+                    break;
+                case UIInterfaceOrientationPortraitUpsideDown:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(90));
+                    break;
+                case UIInterfaceOrientationLandscapeLeft:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(90));
+                    break;
+                case UIInterfaceOrientationLandscapeRight:
+                    self.transform = CGAffineTransformMakeRotation(DegreesToRadians(90));
+                    break;
+                default:
+                    break;
+            }
+            break;
+		}
+		default:
+			break;
+	}
+    //rotate rect
+    lastInterfaceOrientation = orientation;
 }
 
 + (ToastButton *)showToastTo:(UIView *)view animated:(BOOL)animated
@@ -339,6 +475,47 @@
 
 - (void)setPosition
 {
+    if (initWithWindow)
+    {
+        UIInterfaceOrientation orientation = (UIInterfaceOrientation)[[UIApplication sharedApplication] statusBarOrientation];
+        switch (orientation) {
+            case UIDeviceOrientationPortrait:
+            {
+                CGFloat originX = (initSuperViewWidth - self.frame.size.width)/2;
+                CGFloat originY = (initSuperViewHeight - self.frame.size.height)/2;
+                [self setFrame:CGRectMake(originX, originY, self.frame.size.width, self.frame.size.height)];
+                break;
+            }
+            case UIDeviceOrientationPortraitUpsideDown:
+            {
+                self.transform = CGAffineTransformMakeRotation(M_PI);
+                CGFloat originX = (initSuperViewWidth - self.frame.size.width)/2;
+                CGFloat originY = (initSuperViewHeight - self.frame.size.height)/2;
+                [self setFrame:CGRectMake(originX, originY, self.frame.size.width, self.frame.size.height)];
+                break;
+            }
+            case UIDeviceOrientationLandscapeLeft:
+            {
+                self.transform = CGAffineTransformMakeRotation(M_PI/2);
+                CGFloat originXX = (initSuperViewWidth - self.frame.size.height)/2;
+                CGFloat originYY = (initSuperViewHeight - self.frame.size.width)/2;
+                [self setFrame:CGRectMake(originYY, originXX, self.frame.size.width, self.frame.size.height)];
+                break;
+            }
+            case UIDeviceOrientationLandscapeRight:
+            {
+                self.transform = CGAffineTransformMakeRotation(-M_PI/2);
+                CGFloat originXX = (initSuperViewWidth - self.frame.size.height)/2;
+                CGFloat originYY = (initSuperViewHeight - self.frame.size.width)/2;
+                [self setFrame:CGRectMake(originYY, originXX, self.frame.size.width, self.frame.size.height)];
+                break;
+            }
+            default:
+                break;
+        }
+        return;
+    }
+    
     switch (positionMode)
     {
         case ToastTopPositionMode:
@@ -404,13 +581,9 @@
     [self resizeSubviewsForToastButton];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)dealloc
 {
-    // Drawing code
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
-*/
 
 @end
