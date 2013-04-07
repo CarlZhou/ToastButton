@@ -17,6 +17,7 @@
 {
     ToastButton *toastBtn;
     UINavigationController *testNavi;
+    IBOutlet UIButton *acrossControllerBtn;
 }
 
 - (void)viewDidLoad
@@ -92,13 +93,11 @@
     [toastBtn setToastText:@"Tap to hide\nNeed to be released before another use"];
     [toastBtn setToastImage:[[UIImage imageNamed:@"imageView.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:25]];
     [toastBtn setPositionMode:ToastCenterPositionMode];
-    [toastBtn setTarget:toastBtn Action:@selector(Hide)];
+    [toastBtn setTarget:self Action:@selector(hideAcrossControllerToast)];
     [toastBtn ShowAfterCompletion:^(BOOL finished)
     {
         if (finished)
-        {
-
-        }
+            [self.view setUserInteractionEnabled:NO];
     }];
     UIViewController *testViewController = [[UIViewController alloc] init];
     testViewController.view.backgroundColor = [UIColor lightGrayColor];
@@ -110,7 +109,17 @@
     testViewController.navigationItem.title = @"acrossController";
 }
 
+- (void)hideAcrossControllerToast
+{
+    [toastBtn HideWithCompletion:^(BOOL finished){
+        if (finished)
+            [self.view setUserInteractionEnabled:YES];
+    }];
+}
 
 
-
+- (void)viewDidUnload {
+    acrossControllerBtn = nil;
+    [super viewDidUnload];
+}
 @end
