@@ -266,7 +266,7 @@ UIDeviceOrientation currentOrientation;
     isAnimated = animated;
 }
 
-- (void)ShowWithAnimation:(BOOL)animated
+- (void)ShowWithAnimation:(BOOL)animated withCompletion:(void (^)(BOOL finished))completion
 {
     [self setPosition];
     if (animated)
@@ -284,6 +284,8 @@ UIDeviceOrientation currentOrientation;
             // TODO:After animation actions
             if (hideAfterDelayTime != 0)
                 [self HideAfterDelay:hideAfterDelayTime];
+            if (completion)
+                completion(finished);
         }];
     }
     else
@@ -292,20 +294,27 @@ UIDeviceOrientation currentOrientation;
         toastImageView.alpha = 1.0f;
         customView.alpha = 1.0f;
         backgroundView.alpha = 0.7f;
+        if (completion)
+            completion(YES);
     }
 }
 
 - (void)Show
 {
-    [self ShowWithAnimation:isAnimated];
+    [self ShowWithAnimation:isAnimated withCompletion:nil];
 }
 
 - (void)ShowAfterDelay:(NSTimeInterval)delay
 {
-    [self performSelector:@selector(ShowWithAnimation:) withObject:[NSNumber numberWithBool:isAnimated] afterDelay:delay];
+    [self performSelector:@selector(Show) withObject:nil afterDelay:delay];
 }
 
-- (void)HideWithAnimation:(BOOL)animated
+- (void)ShowAfterCompletion:(void (^)(BOOL))completion
+{
+    [self ShowWithAnimation:isAnimated withCompletion:completion];
+}
+
+- (void)HideWithAnimation:(BOOL)animated withCompletion:(void (^)(BOOL finished))completion
 {
     if (animated)
     {
@@ -320,6 +329,8 @@ UIDeviceOrientation currentOrientation;
             customView.alpha = 0.0f;
         }completion:^(BOOL finished){
             // TODO:After animation actions
+            if (completion)
+                completion(finished);
             if (self.removeFromSuperViewAfterHide)
                 [self removeFromSuperview];
         }];
@@ -330,6 +341,8 @@ UIDeviceOrientation currentOrientation;
         toastImageView.alpha = 0.0f;
         toastTextLabel.alpha = 0.0f;
         customView.alpha = 0.0f;
+        if (completion)
+            completion(YES);
         if (self.removeFromSuperViewAfterHide)
             [self removeFromSuperview];
     }
@@ -337,12 +350,17 @@ UIDeviceOrientation currentOrientation;
 
 - (void)Hide
 {
-    [self HideWithAnimation:isAnimated];
+    [self HideWithAnimation:isAnimated withCompletion:nil];
 }
 
 - (void)HideAfterDelay:(NSTimeInterval)delay
 {
-    [self performSelector:@selector(HideWithAnimation:) withObject:[NSNumber numberWithBool:isAnimated] afterDelay:delay];
+    [self performSelector:@selector(Hide) withObject:nil afterDelay:delay];
+}
+
+- (void)HideWithCompletion:(void (^)(BOOL))completion
+{
+    [self HideWithAnimation:isAnimated withCompletion:completion];
 }
 
 - (void)setToastText:(NSString *)text
@@ -479,32 +497,32 @@ UIDeviceOrientation currentOrientation;
     {
         UIInterfaceOrientation orientation = (UIInterfaceOrientation)[[UIApplication sharedApplication] statusBarOrientation];
         switch (orientation) {
-            case UIDeviceOrientationPortrait:
+            case UIInterfaceOrientationPortrait:
             {
                 CGFloat originX = (initSuperViewWidth - self.frame.size.width)/2;
                 CGFloat originY = (initSuperViewHeight - self.frame.size.height)/2;
                 [self setFrame:CGRectMake(originX, originY, self.frame.size.width, self.frame.size.height)];
                 break;
             }
-            case UIDeviceOrientationPortraitUpsideDown:
+            case UIInterfaceOrientationPortraitUpsideDown:
             {
-                self.transform = CGAffineTransformMakeRotation(M_PI);
+                self.transform = CGAffineTransformMakeRotation((CGFloat)M_PI);
                 CGFloat originX = (initSuperViewWidth - self.frame.size.width)/2;
                 CGFloat originY = (initSuperViewHeight - self.frame.size.height)/2;
                 [self setFrame:CGRectMake(originX, originY, self.frame.size.width, self.frame.size.height)];
                 break;
             }
-            case UIDeviceOrientationLandscapeLeft:
+            case UIInterfaceOrientationLandscapeLeft:
             {
-                self.transform = CGAffineTransformMakeRotation(M_PI/2);
+                self.transform = CGAffineTransformMakeRotation((CGFloat)M_PI/2);
                 CGFloat originXX = (initSuperViewWidth - self.frame.size.height)/2;
                 CGFloat originYY = (initSuperViewHeight - self.frame.size.width)/2;
                 [self setFrame:CGRectMake(originYY, originXX, self.frame.size.width, self.frame.size.height)];
                 break;
             }
-            case UIDeviceOrientationLandscapeRight:
+            case UIInterfaceOrientationLandscapeRight:
             {
-                self.transform = CGAffineTransformMakeRotation(-M_PI/2);
+                self.transform = CGAffineTransformMakeRotation((CGFloat)-M_PI/2);
                 CGFloat originXX = (initSuperViewWidth - self.frame.size.height)/2;
                 CGFloat originYY = (initSuperViewHeight - self.frame.size.width)/2;
                 [self setFrame:CGRectMake(originYY, originXX, self.frame.size.width, self.frame.size.height)];
@@ -515,7 +533,7 @@ UIDeviceOrientation currentOrientation;
         }
         return;
     }
-    
+
     switch (positionMode)
     {
         case ToastTopPositionMode:

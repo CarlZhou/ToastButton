@@ -93,14 +93,24 @@
     [toastBtn setToastImage:[[UIImage imageNamed:@"imageView.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:25]];
     [toastBtn setPositionMode:ToastCenterPositionMode];
     [toastBtn setTarget:toastBtn Action:@selector(Hide)];
-    [toastBtn Show];
+    [toastBtn ShowAfterCompletion:^(BOOL finished)
+    {
+        if (finished)
+        {
+
+        }
+    }];
     UIViewController *testViewController = [[UIViewController alloc] init];
     testViewController.view.backgroundColor = [UIColor lightGrayColor];
     testNavi = [[UINavigationController alloc] initWithRootViewController:testViewController];
     [self presentModalViewController:testNavi animated:YES];
-    
+
     testViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:testViewController action:@selector(dismissModalViewControllerAnimated:)];
     testNavi.navigationBar.tintColor = [UIColor blackColor];
     testViewController.navigationItem.title = @"acrossController";
 }
+
+
+
+
 @end

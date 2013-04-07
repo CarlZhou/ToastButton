@@ -65,8 +65,12 @@ typedef enum {
 
 - (void)Show;
 - (void)ShowAfterDelay:(NSTimeInterval)delay;
+
+- (void)ShowAfterCompletion:(void (^)(BOOL))completion;
 - (void)Hide;
 - (void)HideAfterDelay:(NSTimeInterval)delay;
+
+- (void)HideWithCompletion:(void (^)(BOOL))completion;
 - (void)setTarget:(id)target Action:(SEL)Selector;
 - (void)setToastText:(NSString *)text;
 - (void)setToastImage:(UIImage *)image;
