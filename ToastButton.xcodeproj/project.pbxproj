@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8EFD6AFD17111822002AC857 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3125EF8170F447C00F913A9 /* QuartzCore.framework */; };
+		8EFD6B001711188B002AC857 /* customView8bit.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD6AFE1711188B002AC857 /* customView8bit.png */; };
+		8EFD6B011711188B002AC857 /* imageView.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD6AFF1711188B002AC857 /* imageView.png */; };
+		8EFD6B0417111898002AC857 /* ToastButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD6B0317111898002AC857 /* ToastButton.m */; };
+		8EFD6B0517111898002AC857 /* ToastButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD6B0317111898002AC857 /* ToastButton.m */; };
 		C3125EB3170F1A9000F913A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3125EB2170F1A9000F913A9 /* UIKit.framework */; };
 		C3125EB5170F1A9000F913A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3125EB4170F1A9000F913A9 /* Foundation.framework */; };
 		C3125EB7170F1A9000F913A9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3125EB6170F1A9000F913A9 /* CoreGraphics.framework */; };
@@ -17,16 +22,12 @@
 		C3125EE4170F1A9000F913A9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3125EE2170F1A9000F913A9 /* InfoPlist.strings */; };
 		C3125EE7170F1A9000F913A9 /* ToastButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C3125EE6170F1A9000F913A9 /* ToastButtonTests.m */; };
 		C3125EF9170F447C00F913A9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3125EF8170F447C00F913A9 /* QuartzCore.framework */; };
-		C3125EFC170F5A6A00F913A9 /* ToastButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3125EFB170F5A6A00F913A9 /* ToastButton.m */; };
 		C3125F00170F5A9E00F913A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3125EFF170F5A9E00F913A9 /* AppDelegate.m */; };
 		C3125F01170F5A9E00F913A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3125EFF170F5A9E00F913A9 /* AppDelegate.m */; };
-		C3125F03170F5AB500F913A9 /* ToastButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C3125EFB170F5A6A00F913A9 /* ToastButton.m */; };
 		C3125F0A170F5AD900F913A9 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3125F08170F5AD900F913A9 /* MainStoryboard_iPad.storyboard */; };
 		C3125F0B170F5AD900F913A9 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3125F08170F5AD900F913A9 /* MainStoryboard_iPad.storyboard */; };
 		C3125F0C170F5AD900F913A9 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3125F09170F5AD900F913A9 /* MainStoryboard_iPhone.storyboard */; };
 		C3125F0D170F5AD900F913A9 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3125F09170F5AD900F913A9 /* MainStoryboard_iPhone.storyboard */; };
-		C3125F0F170F5AFE00F913A9 /* ToastButton-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3125F0E170F5AFE00F913A9 /* ToastButton-Info.plist */; };
-		C3125F10170F5AFE00F913A9 /* ToastButton-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3125F0E170F5AFE00F913A9 /* ToastButton-Info.plist */; };
 		C3125F16170F5B2400F913A9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3125F12170F5B2400F913A9 /* Default-568h@2x.png */; };
 		C3125F17170F5B2400F913A9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3125F12170F5B2400F913A9 /* Default-568h@2x.png */; };
 		C3125F18170F5B2400F913A9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C3125F13170F5B2400F913A9 /* Default.png */; };
@@ -37,8 +38,6 @@
 		C3125F1D170F5B2400F913A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3125F15170F5B2400F913A9 /* main.m */; };
 		C3125F1F170F5B3D00F913A9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3125F1E170F5B3D00F913A9 /* InfoPlist.strings */; };
 		C3125F20170F5B3D00F913A9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3125F1E170F5B3D00F913A9 /* InfoPlist.strings */; };
-		C3125F24170F639100F913A9 /* imageView.png in Resources */ = {isa = PBXBuildFile; fileRef = C3125F23170F639100F913A9 /* imageView.png */; };
-		C3125F26170F652D00F913A9 /* customView8bit.png in Resources */ = {isa = PBXBuildFile; fileRef = C3125F25170F652D00F913A9 /* customView8bit.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +51,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8EFD6AFE1711188B002AC857 /* customView8bit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = customView8bit.png; path = ToastButton/customView8bit.png; sourceTree = "<group>"; };
+		8EFD6AFF1711188B002AC857 /* imageView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = imageView.png; path = ToastButton/imageView.png; sourceTree = "<group>"; };
+		8EFD6B0217111898002AC857 /* ToastButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastButton.h; sourceTree = "<group>"; };
+		8EFD6B0317111898002AC857 /* ToastButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastButton.m; sourceTree = "<group>"; };
 		C3125EAF170F1A9000F913A9 /* ToastButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToastButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3125EB2170F1A9000F913A9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C3125EB4170F1A9000F913A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,8 +68,6 @@
 		C3125EE5170F1A9000F913A9 /* ToastButtonTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToastButtonTests.h; sourceTree = "<group>"; };
 		C3125EE6170F1A9000F913A9 /* ToastButtonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToastButtonTests.m; sourceTree = "<group>"; };
 		C3125EF8170F447C00F913A9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		C3125EFA170F5A6A00F913A9 /* ToastButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToastButton.h; path = ToastButton/ToastButton.h; sourceTree = "<group>"; };
-		C3125EFB170F5A6A00F913A9 /* ToastButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToastButton.m; path = ToastButton/ToastButton.m; sourceTree = "<group>"; };
 		C3125EFE170F5A9E00F913A9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C3125EFF170F5A9E00F913A9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C3125F08170F5AD900F913A9 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
@@ -78,8 +79,6 @@
 		C3125F14170F5B2400F913A9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C3125F15170F5B2400F913A9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C3125F1E170F5B3D00F913A9 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
-		C3125F23170F639100F913A9 /* imageView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageView.png; sourceTree = "<group>"; };
-		C3125F25170F652D00F913A9 /* customView8bit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = customView8bit.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EFD6AFD17111822002AC857 /* QuartzCore.framework in Frameworks */,
 				C3125EDA170F1A9000F913A9 /* SenTestingKit.framework in Frameworks */,
 				C3125EDB170F1A9000F913A9 /* UIKit.framework in Frameworks */,
 				C3125EDC170F1A9000F913A9 /* Foundation.framework in Frameworks */,
@@ -190,8 +190,8 @@
 		C3125EF0170F1A9D00F913A9 /* ToastButton */ = {
 			isa = PBXGroup;
 			children = (
-				C3125EFA170F5A6A00F913A9 /* ToastButton.h */,
-				C3125EFB170F5A6A00F913A9 /* ToastButton.m */,
+				8EFD6B0217111898002AC857 /* ToastButton.h */,
+				8EFD6B0317111898002AC857 /* ToastButton.m */,
 			);
 			name = ToastButton;
 			sourceTree = "<group>";
@@ -199,8 +199,8 @@
 		C3125EFD170F5A7600F913A9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				C3125F25170F652D00F913A9 /* customView8bit.png */,
-				C3125F23170F639100F913A9 /* imageView.png */,
+				8EFD6AFE1711188B002AC857 /* customView8bit.png */,
+				8EFD6AFF1711188B002AC857 /* imageView.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -278,13 +278,12 @@
 			files = (
 				C3125F0A170F5AD900F913A9 /* MainStoryboard_iPad.storyboard in Resources */,
 				C3125F0C170F5AD900F913A9 /* MainStoryboard_iPhone.storyboard in Resources */,
-				C3125F0F170F5AFE00F913A9 /* ToastButton-Info.plist in Resources */,
 				C3125F16170F5B2400F913A9 /* Default-568h@2x.png in Resources */,
 				C3125F18170F5B2400F913A9 /* Default.png in Resources */,
 				C3125F1A170F5B2400F913A9 /* Default@2x.png in Resources */,
 				C3125F1F170F5B3D00F913A9 /* InfoPlist.strings in Resources */,
-				C3125F24170F639100F913A9 /* imageView.png in Resources */,
-				C3125F26170F652D00F913A9 /* customView8bit.png in Resources */,
+				8EFD6B001711188B002AC857 /* customView8bit.png in Resources */,
+				8EFD6B011711188B002AC857 /* imageView.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +294,6 @@
 				C3125EE4170F1A9000F913A9 /* InfoPlist.strings in Resources */,
 				C3125F0B170F5AD900F913A9 /* MainStoryboard_iPad.storyboard in Resources */,
 				C3125F0D170F5AD900F913A9 /* MainStoryboard_iPhone.storyboard in Resources */,
-				C3125F10170F5AFE00F913A9 /* ToastButton-Info.plist in Resources */,
 				C3125F17170F5B2400F913A9 /* Default-568h@2x.png in Resources */,
 				C3125F19170F5B2400F913A9 /* Default.png in Resources */,
 				C3125F1B170F5B2400F913A9 /* Default@2x.png in Resources */,
@@ -326,10 +324,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3125F03170F5AB500F913A9 /* ToastButton.m in Sources */,
 				C3125ED2170F1A9000F913A9 /* ViewController.m in Sources */,
 				C3125F00170F5A9E00F913A9 /* AppDelegate.m in Sources */,
 				C3125F1C170F5B2400F913A9 /* main.m in Sources */,
+				8EFD6B0417111898002AC857 /* ToastButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,9 +336,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3125EE7170F1A9000F913A9 /* ToastButtonTests.m in Sources */,
-				C3125EFC170F5A6A00F913A9 /* ToastButton.m in Sources */,
 				C3125F01170F5A9E00F913A9 /* AppDelegate.m in Sources */,
 				C3125F1D170F5B2400F913A9 /* main.m in Sources */,
+				8EFD6B0517111898002AC857 /* ToastButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +457,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToastButton/ToastButton-Prefix.pch";
 				INFOPLIST_FILE = "ToastButtonTests/ToastButtonTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -476,6 +475,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToastButton/ToastButton-Prefix.pch";
 				INFOPLIST_FILE = "ToastButtonTests/ToastButtonTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
